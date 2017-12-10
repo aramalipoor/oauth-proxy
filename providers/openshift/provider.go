@@ -81,7 +81,7 @@ func (p *OpenShiftProvider) LoadDefaults(serviceAccount string, caPaths []string
 	}
 
 	defaults := &providers.ProviderData{
-		Scope: "user:info user:check-access",
+		Scope: "user:info user:check-access user:list-scoped-projects",
 	}
 
 	// all OpenShift service accounts are OAuth clients, use this if we have it
@@ -104,9 +104,11 @@ func (p *OpenShiftProvider) LoadDefaults(serviceAccount string, caPaths []string
 	}
 	// provide default URLs
 	if !emptyURL(defaults.LoginURL) {
+		log.Println("defaults.LoginURL.Host", defaults.LoginURL.Host)
 		defaults.ValidateURL = &url.URL{
 			Scheme: defaults.LoginURL.Scheme,
-			Host:   defaults.LoginURL.Host,
+			// Host:   defaults.LoginURL.Host,
+			Host:   "dashboard.staging.abarcloud.com:8443",
 			Path:   "/apis/user.openshift.io/v1/users/~",
 		}
 	}
@@ -264,9 +266,11 @@ func (p *OpenShiftProvider) Complete(data *providers.ProviderData, reviewURL *ur
 		if emptyURL(data.LoginURL) {
 			return fmt.Errorf("--openshift-review-url must be specified")
 		}
+		log.Println("data.LoginURL.Host", data.LoginURL.Host)
 		reviewURL = &url.URL{
 			Scheme: data.LoginURL.Scheme,
-			Host:   data.LoginURL.Host,
+			//Host:   data.LoginURL.Host,
+			Host:   "dashboard.staging.abarcloud.com:8443",
 			Path:   "/apis/authorization.openshift.io/v1/subjectaccessreviews",
 		}
 	}
