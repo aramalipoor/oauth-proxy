@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/openshift/oauth-proxy/api"
+	"github.com/aramalipoor/oauth-proxy/api"
 )
 
 // stripToken is a helper function to obfuscate "access_token"

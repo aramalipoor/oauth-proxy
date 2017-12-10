@@ -13,7 +13,7 @@ Features:
 * May also be configured to check bearer tokens or Kubernetes client certificates and verify access
 * On OpenShift 3.6+ clusters, supports zero-configuration end-to-end TLS via the out of the box router
 
-This is a fork of the https://github.com/openshift/oauth-proxy project with other providers removed (for now). It's
+This is a fork of the https://github.com/aramalipoor/oauth-proxy project with other providers removed (for now). It's
 focused on providing the simplest possible secure proxy on OpenShift
 
 ![Sign In Page](https://cloud.githubusercontent.com/assets/45028/4970624/7feb7dd8-6886-11e4-93e0-c9904af44ea8.png)
@@ -150,8 +150,8 @@ is a common configuration error.
 To build, ensure you are running Go 1.7+ and clone the repo:
 
 ```
-$ go get -u github.com/openshift/oauth-proxy
-$ cd $GOPATH/src/github.com/openshift/oauth-proxy
+$ go get -u github.com/aramalipoor/oauth-proxy
+$ cd $GOPATH/src/github.com/aramalipoor/oauth-proxy
 ```
 
 To build, run:

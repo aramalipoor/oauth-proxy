@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/openshift/oauth-proxy/cookie"
+	"github.com/aramalipoor/oauth-proxy/cookie"
 )
 
 type Provider interface {

@@ -20,9 +20,9 @@ import (
 	"golang.org/x/net/http2"
 
 	"github.com/18F/hmacauth"
-	"github.com/openshift/oauth-proxy/cookie"
-	"github.com/openshift/oauth-proxy/providers"
-	"github.com/openshift/oauth-proxy/util"
+	"github.com/aramalipoor/oauth-proxy/cookie"
+	"github.com/aramalipoor/oauth-proxy/providers"
+	"github.com/aramalipoor/oauth-proxy/util"
 	"github.com/yhat/wsutil"
 )
 
@@ -109,6 +109,11 @@ func NewReverseProxy(target *url.URL, upstreamFlush time.Duration, rootCAs []str
 	transport := &http.Transport{
 		MaxIdleConnsPerHost: 500,
 		IdleConnTimeout:     1 * time.Minute,
+
+		// TODO Remove for production
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
 	}
 	if len(rootCAs) > 0 {
 		pool, err := util.GetCertPool(rootCAs, false)

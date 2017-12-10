@@ -17,8 +17,8 @@ import (
 	"time"
 
 	"github.com/bitly/go-simplejson"
-	"github.com/openshift/oauth-proxy/providers"
-	"github.com/openshift/oauth-proxy/util"
+	"github.com/aramalipoor/oauth-proxy/providers"
+	"github.com/aramalipoor/oauth-proxy/util"
 
 	"k8s.io/apiserver/pkg/authentication/authenticator"
 	"k8s.io/apiserver/pkg/authorization/authorizer"
@@ -120,6 +120,13 @@ func (p *OpenShiftProvider) setCA(paths []string) error {
 			Jar:       http.DefaultClient.Jar,
 			Transport: http.DefaultTransport,
 		}
+
+		// TODO Remove for production
+		p.Client.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+		}
 	}
 	//defaults
 	capaths := []string{"/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"}
@@ -135,8 +142,12 @@ func (p *OpenShiftProvider) setCA(paths []string) error {
 	p.Client.Transport = &http.Transport{
 		TLSClientConfig: &tls.Config{
 			RootCAs: pool,
+
+			// TODO Remove for production
+			InsecureSkipVerify: true,
 		},
 	}
+
 	return nil
 }
 

@@ -142,7 +142,7 @@ func getTemplates() *template.Template {
 	<footer>
 	{{ if eq .Footer "-" }}
 	{{ else if eq .Footer ""}}
-	Secured with <a href="https://github.com/openshift/oauth-proxy#oauth2_proxy">OpenShift oauth-proxy</a> version {{.Version}}
+	Secured with <a href="https://github.com/aramalipoor/oauth-proxy#oauth2_proxy">OpenShift oauth-proxy</a> version {{.Version}}
 	{{ else }}
 	{{.Footer}}
 	{{ end }}

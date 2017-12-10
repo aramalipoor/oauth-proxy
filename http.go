@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/openshift/oauth-proxy/util"
+	"github.com/aramalipoor/oauth-proxy/util"
 )
 
 type Server struct {
